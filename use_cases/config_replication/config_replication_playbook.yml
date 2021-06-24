@@ -1,0 +1,58 @@
+- name: Creating volume and account on destination Element cluster
+  hosts: localhost
+  collections:
+    - netapp.elementsw
+  connection: local
+  vars_files:
+    - vars/dest_vars.yml
+    - vars/pairing_vars.yml
+  vars_prompt:
+    - name: dest_hostname
+      prompt: Enter Destination Hostname
+      private: no
+    - name: dest_username
+      prompt: Enter Destination Username
+      private: no
+    - name: dest_password
+      prompt: Enter Destination Password
+      unsafe: yes
+      private: yes
+    - name: source_hostname
+      prompt: Enter Source Hostname
+      private: no
+    - name: source_username
+      prompt: Enter Source Username
+      private: no
+    - name: source_password
+      prompt: Enter Source Password
+      unsafe: yes
+      private: yes
+  tasks:
+    - name: Create account on destination Element cluster
+      include_tasks: ../../tasks/create_account.yml
+      vars:
+        hostname: "{{ dest_hostname }}"
+        username: "{{ dest_username }}"
+        password: "{{ dest_password }}"
+      when: config_dest_volumes
+    - name: Create volume on destination Element cluster
+      include_tasks: ../../tasks/create_volumes.yml
+      vars:
+        hostname: "{{ dest_hostname }}"
+        username: "{{ dest_username }}"
+        password: "{{ dest_password }}"
+      when: config_dest_volumes
+    - name: Create cluster pair
+      include_tasks: ../../tasks/create_cluster_pairs.yml
+      vars:
+        hostname: "{{ source_hostname }}"
+        username: "{{ source_username }}"
+        password: "{{ source_password }}"
+        dest_mvip: "{{ dest_hostname }}"
+    - name: Create volume pair
+      include_tasks: ../../tasks/create_volume_pairs.yml
+      vars:
+        hostname: "{{ source_hostname }}"
+        username: "{{ source_username }}"
+        password: "{{ source_password }}"
+        dest_mvip: "{{ dest_hostname }}"

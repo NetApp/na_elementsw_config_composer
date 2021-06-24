@@ -1,0 +1,21 @@
+#Vars file for adding drives to the Element cluster
+
+#Enter the node name or node ID whose drives are to be added to the cluster. 
+#If you want to add all drives of all nodes to the cluster, leave the variable 'nodes' commented
+#If you want to add drives of a specific node to the cluster, uncomment the 'nodes' variable and list the node names or node-ids of the specific nodes
+#nodes: 
+  - 1
+  - 2
+  - 3
+  - 4
+
+#Enter the drive name or drive ID of the drive to be added to the cluster
+#Use this only if you want to add a particular drive of a particular node to the cluster
+#If you want to add all drives of all nodes to the cluster, leave the variable 'drives' commented
+#When you use 'drives', the corresponding node-id or node-name is to be provided in 'nodes' variable
+#drives:
+  - 20
+  - 21
+  - 22
+  - 23
+  - 24

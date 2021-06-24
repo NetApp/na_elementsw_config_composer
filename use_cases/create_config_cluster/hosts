@@ -1,0 +1,7 @@
+[elementsw]
+10.63.172.140
+
+#Management IP (MIP) of one of the nodes that are to be added to the Element cluster
+#This is the IP of the Bond1G interface of one of the HCI nodes to be added to Element cluster
+[elementnodemip]
+10.63.172.136

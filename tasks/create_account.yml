@@ -1,0 +1,12 @@
+- block:
+    - name: Create Account
+      netapp.elementsw.na_elementsw_account:
+        hostname: "{{ hostname }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        state: present
+        element_username: "{{ item }}"
+      with_items:
+        - "{{ elementsw_accounts }}"
+  tags:
+    - create_account

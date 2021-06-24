@@ -1,0 +1,92 @@
+#Vars file for creating Element cluster and configuring initial parameters
+
+#Management Virtual IP (MVIP) to be configured for the Element Cluster.
+#This IP will belong to the In-band Management subnet
+management_virtual_ip: 10.63.172.140
+
+#Storage Virtual IP (SVIP) to be configured for the Element Cluster
+#This IP will belong to the iSCSI Storage subnet
+storage_virtual_ip: 172.21.87.140
+
+#The number of replicas of data stored
+#Default value is '2'
+replica_count: 2
+
+#Mention whether or not you accept the End Users' License Agreement
+#Possible values are 'yes' and 'no'
+#Default value is 'yes'
+accept_eula: yes
+
+#List of Management IPs (MIPs) and Storage IPs (SIPs) of all nodes to be added to the Element Cluster
+#MIPs are the IPs that are assigned to the Bond1G interface on the HCI nodes
+#SIPs are the IPs that are to be assigned to the Bond10G interface on the HCI nodes
+cluster_nodes:
+  - mip: 10.63.172.136
+    sip: 172.21.87.136
+  - mip: 10.63.172.137
+    sip: 172.21.87.137
+  - mip: 10.63.172.138
+    sip: 172.21.87.138
+  - mip: 10.63.172.139
+    sip: 172.21.87.139
+
+#Subnet mask for Storage IPs on HCI nodes
+#Enter the value in x.x.x.x format
+sip_subnet_mask: 255.255.255.0
+#Storage VLAN ID or iSCSI VLAN ID for storage interfaces on HCI nodes
+sip_vlan: 3343
+#Enter the gateway in x.x.x.x format, if available
+sip_gateway:
+
+#Cluster name to be assigned to all HCI nodes
+elementsw_cluster_name: rhv-store
+
+#Enter the node name or node ID whose drives are to be added to the cluster.
+#If you want to add all drives of all nodes to the cluster, leave the variable 'nodes' commented
+#If you want to add drives of a specific node to the cluster, uncomment the 'nodes' variable and list the node names or node-ids of the specific nodes
+#nodes:
+#  - 1
+#  - 2
+#  - 3
+#  - 4
+
+#Enter the drive name or drive ID of the drive to be added to the cluster
+#Use this only if you want to add a particular drive of a particular node to the cluster
+#If you want to add all drives of all nodes to the cluster, leave the variable 'drives' commented
+#When you use 'drives', the corresponding node-id or node-name is to be provided in 'nodes' variable
+#drives:
+#  - 19
+#  - 20
+#  - 21
+#  - 22
+#  - 23
+#  - 24
+
+#Mention whether or not you want to enable the Advanced Encryption Standard (AES) 256-bit encryption at rest feature in the Element cluster
+#Default value is 'absent'
+encryption_at_rest: absent
+
+#Mention whether or not you want to enable the virtual volumes (VVols) feature in the cluster
+#Default value is 'no'
+vvol_enable: no
+
+#Enter a list of ntp servers for the cluster
+#This is NOT a required field
+#You can leave it blank if you do not wish to provide any ntp servers
+#ntp_servers:
+#  - x.x.x.x
+
+#Mention whether or not you want to enable all nodes in the cluster to act as NTP broadcast clients
+#Default value is 'no'
+broadcastclient: no
+
+#Enter the list of extra networks or vlans that you want to create on the Element cluster
+#Each VLAN or network will require a vlan_id, SVIP in that VLAN/subnet, few IPs to be assigned to each node in the cluster
+#Default is an empty network list which indicates no extra networks are created
+#vlan_networks:
+#  - name:
+#    vlan_id:
+#    vlan_svip:
+#    vlan_svip_netmask:
+#    starting_ip_addr:
+#    ip_addr_block_size:

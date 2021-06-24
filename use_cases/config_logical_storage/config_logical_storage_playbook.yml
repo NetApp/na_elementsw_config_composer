@@ -1,0 +1,18 @@
+- hosts: "{{ hosts | default('elementsw') }}"
+  name: Create volumes, accounts and associate newly created account
+  collections:
+    - netapp.elementsw
+  connection: local
+  vars_files:
+    - vars/main.yml
+  tasks:
+    - name: Create accounts
+      include_tasks: ../../tasks/create_account.yml
+    - name: Create QoS policies
+      include_tasks: ../../tasks/create_qos_policy.yml
+    - name: Create volumes
+      include_tasks: ../../tasks/create_volumes.yml
+    - name: Create Initiators
+      include_tasks: ../../tasks/create_initiators.yml
+    - name: Create Access Groups
+      include_tasks: ../../tasks/create_access_groups.yml

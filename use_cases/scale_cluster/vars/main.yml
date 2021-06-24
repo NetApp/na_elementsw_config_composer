@@ -1,0 +1,37 @@
+#Vars file for Scaling the Element cluster
+
+#Enter the node name or node ID whose drives are to be added to the cluster.
+#If you want to add all drives of all nodes to the cluster, leave the variable 'nodes' commented
+#If you want to add drives of a specific node to the cluster, uncomment the 'nodes' variable and list the node names or node-ids of the specific nodes
+#nodes:
+#  - 5
+#  - 6
+
+#Enter the drive name or drive ID of the drive to be added to the cluster
+#Use this only if you want to add a particular drive of a particular node to the cluster
+#If you want to add all drives of all nodes to the cluster, leave the variable 'drives' commented
+#When you use 'drives', the corresponding node-id or node-name is to be provided in 'nodes' variable
+#drives:
+#  - 25
+#  - 26
+#  - 27
+#  - 28
+
+#List of Management IPs (MIPs) and Storage IPs (SIPs) of all nodes to be added to the Element Cluster
+#MIPs are the IPs that are assigned to the Bond1G interface on the HCI nodes
+#SIPs are the IPs that are to be assigned to the Bond10G interface on the HCI nodes
+cluster_nodes:
+  - mip: x.x.x.x
+    sip: x.x.x.x
+
+#Subnet mask for Storage IPs on HCI nodes
+#Enter the value in x.x.x.x format
+sip_subnet_mask: 255.255.255.0
+#Enter the gateway in x.x.x.x format, if available
+sip_gateway:
+#Storage VLAN ID or iSCSI VLAN ID for storage interfaces on HCI nodes
+sip_vlan:
+
+#Cluster name to be assigned to all HCI nodes
+elementsw_cluster_name:
+

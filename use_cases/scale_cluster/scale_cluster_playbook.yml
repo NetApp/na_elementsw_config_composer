@@ -1,0 +1,15 @@
+- hosts: elementsw
+  name: Scale HCI Element Cluster [Use-Case 4]
+  collections:
+    - netapp.elementsw
+  connection: local
+  vars_files:
+    - vars/main.yml
+  tasks:
+    - name: Create HCI Element cluster
+      include_tasks: ../../tasks/scale_cluster.yml
+    - name: Delay
+      pause:
+        minutes: 8
+    - name: Add drives to cluster
+      include_tasks: ../../tasks/add_drives.yml

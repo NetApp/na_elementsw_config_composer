@@ -1,0 +1,28 @@
+# Create a Schedule to take Snapshots of the volume
+- block:
+    - name: Create Snapshot Schedule
+      netapp.elementsw.na_elementsw_snapshot_schedule:
+        hostname: "{{ hostname }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        state: present
+        name: "{{ item.name }}"
+        recurring: "{{ item.recurring_snapshot_schedule | default('yes') }}"
+        account_id: "{{ item.account }}"
+        schedule_type: "{{ item.snap_schedule_type }}"
+        days_of_month_monthdays: "{{ item.days_of_month_in_monthdays | default([]) }}"
+        days_of_month_hours: "{{ item.days_of_month_in_hours | default(0) }}"
+        days_of_month_minutes: "{{ item.days_of_month_in_minutes | default(0) }}"
+        days_of_week_weekdays: "{{ item.days_of_week_in_weekdays | default([]) }}"
+        days_of_week_hours: "{{ item.days_of_week_in_hours | default(0) }}"
+        days_of_week_minutes: "{{ item.days_of_week_in_minutes | default(0) }}"
+        time_interval_days: "{{ item.time_interval_in_days | default(0) }}"
+        time_interval_hours: "{{ item.time_interval_in_hours | default(0) }}"
+        time_interval_minutes: "{{ item.time_interval_in_minutes | default(0) }}"
+        retention: "{{ item.retention | default() }}"
+        starting_date: "{{ item.schedule_start_date }}"
+        volumes: "{{ item.volumes }}"
+      with_items:
+        - "{{ volume_snap_schedule }}"  
+  tags:
+    - create_snapshot_schedule

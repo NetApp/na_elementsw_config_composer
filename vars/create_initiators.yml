@@ -1,0 +1,6 @@
+#Vars file for creating initiators in Element cluster
+
+#Enter the list of initiators to be created in the cluster
+initiators:
+  - 
+

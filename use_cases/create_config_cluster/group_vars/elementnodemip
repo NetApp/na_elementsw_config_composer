@@ -1,0 +1,8 @@
+#Management IP (MIP) of one of the nodes that are to be added to the Element cluster
+#This is the IP of the Bond1G interface of one of the HCI nodes to be added to Element cluster
+initial_hostname: "{{ inventory_hostname }}"
+
+
+#Credentials of the Element cluster
+initial_username: "{{ ansible_user }}"
+initial_password: "{{ ansible_password }}"

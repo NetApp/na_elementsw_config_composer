@@ -1,0 +1,27 @@
+#Vars file for creating volumes in Element cluster
+
+#Enter the list of volumes and their details 
+#Each volume takes the following values - name, size, unit of size and the account that is to be attached to the volumes and mention whether or not the volumes should provide 512-byte sector emulation
+#In addition to the above values, specify whether to use QoS policy or custom QoS values for guaranteed performance of the volumes
+#Default is to use custom QoS values
+#If QoS policy is to be used, specify the name or ID of QoS policy
+#If custom QoS values are to be used, specify the minIOPS, maxIOPS and burst IOPS values
+#Either use QoS values or QoS policy, cannot use both for the same volume. 
+#Comment the variables 'minIOPS', 'maxIOPS', 'burstIOPS' if you wish to use QoS policy
+#The default values for:
+#'size_unit' is 'gb'
+#'minIOPS' is '50'
+#'maxIOPS' is '15000'
+#'burstIOPS' is '15000'
+#'enable512e' is 'yes'
+elementsw_volumes:
+  - name: 
+    size:
+    size_unit:
+    qos_policy:
+    minIOPS:
+    maxIOPS:
+    burstIOPS:	
+    account:
+    enable512e:	
+    

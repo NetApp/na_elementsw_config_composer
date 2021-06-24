@@ -1,0 +1,37 @@
+- block:
+    - name: Create Volumes with custom QoS values
+      netapp.elementsw.na_elementsw_volume:
+        hostname: "{{ hostname }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        state: present
+        name: "{{ item.name }}"
+        enable512e: "{{ item.enable512e | default(yes)}}"
+        account_id: "{{ item.account }}"
+        size: "{{ item.size }}"
+        size_unit: "{{ item.size_unit }}"
+        qos:
+          minIOPS: "{{ item.minIOPS | default(50)}}"
+          maxIOPS: "{{ item.maxIOPS | default(15000)}}"
+          burstIOPS: "{{ item.burstIOPS | default(15000)}}"
+      with_items:
+        - "{{ elementsw_volumes }}"
+      when: (item.qos_policy is not defined) or (item.qos_policy|length == 0)
+    - name: Create Volumes with QoS policy
+      netapp.elementsw.na_elementsw_volume:
+        hostname: "{{ hostname }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        state: present
+        name: "{{ item.name }}"
+        enable512e: "{{ item.enable512e | default(yes)}}"
+        account_id: "{{ item.account }}"
+        size: "{{ item.size }}"
+        size_unit: "{{ item.size_unit }}"
+        qos_policy_name: "{{ item.qos_policy }}"
+      with_items:
+        - "{{ elementsw_volumes }}"
+      when: (item.qos_policy is defined) and (item.qos_policy|length > 0)
+
+  tags:
+    - create_volumes

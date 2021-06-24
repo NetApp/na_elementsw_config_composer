@@ -1,0 +1,37 @@
+#Configure SIPs and cluster name on storage nodes and then add the nodes to an existing Element cluster
+- block:
+    - name: Configure SIP on HCI storage nodes
+      netapp.elementsw.na_elementsw_network_interfaces:
+        hostname: "{{ item.mip }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        bond_10g:
+          address: "{{ item.sip }}"
+          netmask: "{{ sip_subnet_mask }}"
+          gateway: "{{ sip_gateway | default() }}"
+          mtu: '9000'
+          bond_mode: LACP
+          bond_lacp_rate: Fast
+          virtual_network_tag: "{{ sip_vlan }}"
+      with_items: "{{ cluster_nodes }}"
+    - name: Configure cluster name on all storage nodes
+      netapp.elementsw.na_elementsw_node:
+        node_ids: "{{ cluster_nodes | map(attribute='mip') | list }}"
+        cluster_name: "{{ cluster_name }}"
+        state: present
+        preset_only: true
+        hostname: "{{ elementsw_hostname }}"
+        username: abc
+        password: abc
+    - name: Delay
+      ansible.builtin.pause:
+        minutes: 1
+    - name: Add the nodes to an existing Element cluster
+      netapp.elementsw.na_elementsw_node:
+        hostname: "{{ hostname }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        node_ids: "{{ cluster_nodes | map(attribute='mip') | list }}"
+        state: present
+  tags:
+    - create_cluster

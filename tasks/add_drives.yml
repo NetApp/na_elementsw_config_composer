@@ -1,0 +1,14 @@
+- block:
+    - name: Add drives to the cluster
+      netapp.elementsw.na_elementsw_drive:
+        hostname: "{{ hostname }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        state: present
+        force_during_upgrade: false
+        force_during_bin_sync: false
+        node_id: "{{ nodes | default([]) }}"
+        drive_id: "{{ drives | default([]) }}"
+  tags:
+    - add_drives
+

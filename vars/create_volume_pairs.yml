@@ -1,0 +1,17 @@
+#Vars file for creating volume pairs pairing 2 Element clusters
+
+#MVIP (Management Virtual IP) address of the destination Element cluster
+dest_elementsw_mvip: x.x.x.x
+
+#Credentials of the destination Element cluster
+dest_elementsw_username: "admin"
+dest_elementsw_password: "password"
+
+#Enter the list of volume pairs being created
+#Each volume pair takes the name and account of the volumes on both the clusters. Also specify the mode of volume pairing
+volume_pairs:
+  - src_vol_name: 
+    src_account: 
+    dst_vol_name: 
+    dst_account: 
+    mode: async

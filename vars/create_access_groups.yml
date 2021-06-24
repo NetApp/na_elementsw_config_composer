@@ -1,0 +1,10 @@
+#Vars file for creating access groups in Element cluster
+
+#Enter the list of access-groups to be created and their details 
+#Each access-group takes name of the access-group, the account to be attached to it, list of volumes and initiators to be attached to it
+#The volumes that are to be attached to the access-group must belong to the account being attached to the access-group
+access_groups:
+  - name:
+    account:
+    attached_volumes:
+    attached_initiators:

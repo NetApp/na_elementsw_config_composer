@@ -1,0 +1,19 @@
+#Vars file for configuring the Element cluster
+
+#Mention whether or not you want to enable the Advanced Encryption Standard (AES) 256-bit encryption at rest feature in the Element cluster
+#Default value is 'absent'
+encryption_at_rest: absent
+
+#Mention whether or not you want to enable the virtual volumes (VVols) feature in the cluster
+#Default value is 'no'
+vvol_enable: no
+
+#Enter a list of ntp servers for the cluster
+#This is NOT a required field
+#You can leave it blank if you do not wish to provide any ntp servers 
+ntp_servers:
+  - x.x.x.x
+
+#Mention whether or not you want to enable all nodes in the cluster to act as NTP broadcast clients
+#Default value is 'no' 
+broadcastclient: no

@@ -1,0 +1,12 @@
+- hosts: "{{ hosts | default('elementsw') }}"
+  name: Create volume snapshot and snapshot-schedule
+  collections:
+    - netapp.elementsw
+  connection: local
+  vars_files:
+    - vars/main.yml
+  tasks:
+    - name: Create Volume snapshot
+      include_tasks: ../../tasks/create_snapshot.yml
+    - name: Create snapshot schedule
+      include_tasks: ../../tasks/create_snapshot_schedule.yml

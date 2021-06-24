@@ -1,0 +1,6 @@
+#MVIP (Management Virtual IP) address of the Element cluster
+hostname: "{{ inventory_hostname }}"
+
+#Credentials of the Element cluster
+username: "{{ ansible_user }}"
+password: "{{ ansible_password }}"

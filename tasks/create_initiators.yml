@@ -1,0 +1,13 @@
+- block:
+    - name: Create Initiators
+      netapp.elementsw.na_elementsw_initiators:
+        hostname: "{{ hostname }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        initiators:
+          - name: "{{ item }}"
+        state: present
+      with_items:
+        - "{{ initiators }}"
+  tags: 
+    - create_initiators

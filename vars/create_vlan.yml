@@ -1,0 +1,14 @@
+#Vars file for creating vlans or subnets in the Element cluster
+
+#Enter the list of extra networks or vlans that you want to create on the Element cluster
+#Each VLAN or network will require a vlan_id, SVIP in that VLAN/subnet, few IPs to be assigned to each node in the cluster
+#Default is an empty network list which indicates no extra networks are created
+vlan_networks:
+  - name:
+    vlan_id:
+    vlan_svip:
+    vlan_svip_netmask:
+    starting_ip_addr:
+    ip_addr_block_size:
+
+

@@ -1,0 +1,12 @@
+- block:
+    - name: Create a QOS Policy
+      netapp.elementsw.na_elementsw_qos_policy:
+        hostname: "{{ hostname }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        state: present
+        name: "{{ item.name }}"
+        qos: {minIOPS: "{{ item.miniops }}", maxIOPS: "{{ item.maxiops }}", burstIOPS: "{{ item.burstiops }}"}
+  with_items: "{{ qos_policy }}"
+  tags:
+    - create_qos_policy

@@ -1,0 +1,16 @@
+#Create Access Group in HCI cluster
+- block:
+    - name: Create Access Groups
+      netapp.elementsw.na_elementsw_access_group:
+        hostname: "{{ hostname }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        state: present
+        name: "{{ item.name }}"
+        account_id: "{{ item.account }}"
+        volumes: "{{ item.attached_volumes }}"
+        initiators: "{{ item.attached_initiators }}"
+      with_items: 
+        - "{{ access_groups }}"
+  tags:
+    - create_access-groups

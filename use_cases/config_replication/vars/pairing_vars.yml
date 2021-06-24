@@ -1,0 +1,17 @@
+#Vars file for creating cluster pairing and volume pairing
+
+#MVIP (Management Virtual IP) address of the destination Element cluster for pairing
+dest_mvip: 10.63.172.140
+
+#Credentials of the destination Element cluster
+#dest_username: "administrator"
+#dest_password: "password"
+
+#Enter the list of volume pairs being created
+#Each volume pair takes the name and account of the volumes on both the clusters. Also specify the mode of volume pairing
+volume_pairs:
+  - src_vol_name: "dbsvr01-data-vol01"
+    src_account: "mssql"
+    dst_vol_name: "dbsvr01-data-vol01"
+    dst_account: "mssql"
+    mode: async

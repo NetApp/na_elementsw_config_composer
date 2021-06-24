@@ -1,0 +1,14 @@
+#Configure Cluster parameters
+- block:
+    - name: Configure cluster
+      netapp.elementsw.na_elementsw_cluster_config:
+        hostname: "{{ hostname }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        encryption_at_rest: "{{ encryption_at_rest | default(absent) }}"
+        set_ntp_info:
+          broadcastclient: "{{ broadcastclient | default(no) }}"
+          ntp_servers: "{{ ntp_servers | default([]) }}"
+        enable_virtual_volumes: "{{ vvol_enable | default(no) }}"
+  tags:
+    - config_cluster

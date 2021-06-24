@@ -1,0 +1,84 @@
+#Vars file for config_logical_storage
+
+#Enter the list of accounts to be created
+elementsw_accounts:
+  - test1
+  - test2
+
+#List of qos policies to be created in Element cluster
+#Each QoS policy accepts the name of the policy, minimum, maximum and burst IOPS
+#The QoS policies created can be used to attach to the volumes to configure the required IOPS for the volume
+qos_policy:
+  - name: test1
+    miniops: 120
+    maxiops: 20000
+    burstiops: 20000
+  - name: test2
+    miniops: 120
+    maxiops: 22000
+    burstiops: 22000
+
+#Enter the list of volumes and their details
+#Each volume takes the following values - name, size, unit of size and the account that is to be attached to the volumes and mention whether or not the volumes should provide 512-byte sector emulation
+#In addition to the above values, specify whether to use QoS policy or custom QoS values for guaranteed performance of the volumes
+#Default is to use custom QoS values
+#If QoS policy is to be used, specify the name or ID of QoS policy
+#If custom QoS values are to be used, specify the minIOPS, maxIOPS and burst IOPS values
+#Either use QoS values or QoS policy, cannot use both for the same volume.
+#Comment the variables 'minIOPS', 'maxIOPS', 'burstIOPS' if you wish to use QoS policy
+#The default values for:
+#'size_unit' is 'gb'
+#'minIOPS' is '50'
+#'maxIOPS' is '15000'
+#'burstIOPS' is '15000'
+#'enable512e' is 'yes'
+elementsw_volumes:
+  - name: test1
+    size: 10
+    size_unit: gb
+    account: test1
+    enable512e: yes
+    qos_policy: test1
+  - name: test11
+    size: 10
+    size_unit: gb
+    account: test1
+    enable512e: yes
+  - name: test2
+    size: 10
+    size_unit: gb
+    account: test2
+    enable512e: yes
+    qos_policy: test2
+  - name: test21
+    size: 10
+    size_unit: gb
+    account: test2
+    enable512e: yes
+
+#Enter the list of initiators to be created in the cluster
+initiators:
+  - iqn.1994-05.com.redhat:rhel01
+  - iqn.1994-05.com.redhat:rhel02
+  - iqn.1994-05.com.redhat:rhel03
+
+#Enter the list of access-groups to be created and their details
+#Each access-group takes name of the access-group, the account to be attached to it, list of volumes and initiators to be attached to it
+#The volumes that are to be attached to the access-group must belong to the account being attached to the access-group
+access_groups:
+  - name: test1
+    account: test1
+    attached_volumes:
+      - test1
+      - test11
+    attached_initiators:
+      - iqn.1994-05.com.redhat:rhel01
+      - iqn.1994-05.com.redhat:rhel02
+  - name: test2
+    account: test2
+    attached_volumes:
+      - test2
+      - test21
+    attached_initiators:
+      - iqn.1994-05.com.redhat:rhel03
+

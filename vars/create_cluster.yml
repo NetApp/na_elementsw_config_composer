@@ -1,0 +1,50 @@
+# Vars file for creating an element cluster
+
+#Management IP (MIP) of one of the nodes that are to be added to the Element cluster
+#This is the IP of the Bond1G interface of one of the HCI nodes to be added to Element cluster
+initial_hostname: x.x.x.x
+
+#Credentials the Element cluster is to be configured with
+initial_username: "admin"
+initial_password: "password"
+
+#Management Virtual IP (MVIP) to be configured for the Element Cluster.
+#This IP will belong to the In-band Management subnet
+management_virtual_ip: x.x.x.x
+
+#Storage Virtual IP (SVIP) to be configured for the Element Cluster
+#This IP will belong to the iSCSI Storage subnet
+storage_virtual_ip: x.x.x.x
+
+#The number of replicas of data stored
+#Default value is '2'
+replica_count: 2
+
+#Mention whether or not you accept the End Users' License Agreement
+#Possible values are 'yes' and 'no'
+#Default value is 'yes'
+accept_eula: yes
+
+#List of Management IPs (MIPs) and Storage IPs (SIPs) of all nodes to be added to the Element Cluster
+#MIPs are the IPs that are assigned to the Bond1G interface on the HCI nodes
+#SIPs are the IPs that are to be assigned to the Bond10G interface on the HCI nodes
+cluster_nodes:
+  - mip: x.x.x.x
+    sip: x.x.x.x
+  - mip: x.x.x.x
+    sip: x.x.x.x
+  - mip: x.x.x.x
+    sip: x.x.x.x
+  - mip: x.x.x.x
+    sip: x.x.x.x
+
+#Subnet mask for Storage IPs on HCI nodes
+#Enter the value in x.x.x.x format
+sip_subnet_mask: 255.255.255.0
+#Enter the gateway in x.x.x.x format, if available
+sip_gateway: 
+#Storage VLAN ID or iSCSI VLAN ID for storage interfaces on HCI nodes        
+sip_vlan: 
+
+#Cluster name to be assigned to all HCI nodes
+cluster_name: 

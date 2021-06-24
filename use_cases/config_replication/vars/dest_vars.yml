@@ -1,0 +1,25 @@
+#Vars file for configuring destination volumes for pairing
+
+#Do you want to configure new volumes on destination Element cluster for configuring it as source volume
+#Possible values are 'yes' or 'no'
+config_dest_volumes: yes
+
+#Enter the list of accounts to be created
+elementsw_accounts:
+  - mssql
+
+#Enter the list of volumes and their details
+#Each volume takes the following values - name, size, unit of size, minimum guaranteed IOPS, maximum guaranteed IOPS, burst IOPS for the volumes. Also mention the account that is to be attached to the volumes and mention whether or not the volumes should provide 512-byte sector emulation
+#The default values for:
+#'size_unit' is 'gb'
+#'minIOPS' is '50'
+#'maxIOPS' is '15000'
+#'burstIOPS' is '15000'
+#'enable512e' is 'yes'
+elementsw_volumes:
+  - name: dbsvr01-data-vol01
+    size: 200
+    size_unit: gb
+    account: mssql
+    enable512e: yes
+

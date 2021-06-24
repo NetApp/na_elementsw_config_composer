@@ -1,0 +1,17 @@
+#Vars file for creating cluster pairs on 2 Element clusters
+
+#MVIP (Management Virtual IP) address of the source Element cluster
+source_hostname: x.x.x.x
+
+#Credentials of the source Element cluster
+source_username: "admin"
+source_password: "password"
+
+
+
+#MVIP (Management Virtual IP) address of the destination Element cluster
+dest_mvip: x.x.x.x
+
+#Credentials of the destination Element cluster
+dest_username: "admin"
+dest_password: "password"

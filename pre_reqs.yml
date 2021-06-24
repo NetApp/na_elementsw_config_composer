@@ -1,0 +1,22 @@
+- hosts: localhost
+  name: Install Pre-requisites
+  connection: local
+  become: yes
+  become_user: root
+  tasks:
+    - name: Install Solidfire python SDK
+      ansible.builtin.pip:
+        name: 'solidfire-sdk-python'
+        version: '1.5.0.87.post1'
+        state: present
+    - name: Install Solidfire python SDK
+      ansible.builtin.pip:
+        name: requests
+        state: present
+    - name: Install Solidfire python SDK
+      ansible.builtin.pip:
+        name: six
+        state: present
+    - ansible.builtin.pip: 
+        name: enum34
+        state: absent

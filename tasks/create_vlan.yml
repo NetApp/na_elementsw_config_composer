@@ -1,0 +1,18 @@
+#Create VLAN network for the Element cluster to allow other subnets for storage access
+- block:
+    - name: Create VLAN network
+      netapp.elementsw.na_elementsw_vlan:
+        state: present
+        hostname: "{{ hostname }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        name: "{{ item.name }}"
+        vlan_tag: "{{ item.vlan_id }}"
+        svip: "{{ item.vlan_svip }}"
+        netmask: "{{ item.vlan_svip_netmask }}"
+        address_blocks:
+          - start: "{{ item.starting_ip_addr }}"
+            size: "{{ item.ip_addr_block_size }}"
+      with_items: "{{ vlan_networks | default([]) }}"
+  tags:
+    - create_vlan

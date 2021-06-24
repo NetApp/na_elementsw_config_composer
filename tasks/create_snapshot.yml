@@ -1,0 +1,16 @@
+# Create a Snapshot
+- block:
+    - name: Create a Snapshot
+      netapp.elementsw.na_elementsw_snapshot:
+        hostname: "{{ hostname }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        state: present
+        src_volume_id: "{{ item.volume }}"
+        account_id: "{{ item.account }}"
+        name: "{{ item.name | default() }}"
+        retention: "{{ item.retention | default() }}"
+      with_items:
+        - "{{ volume_snap }}"
+  tags:
+    - create_snapshot

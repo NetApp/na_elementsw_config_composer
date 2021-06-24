@@ -1,0 +1,48 @@
+#Vars file for creating snapshots and snapshot schedule
+
+#Enter the list of volume snapshots to be created
+#Each volume snapshot takes the ID or name of the volume and account which is attached to the volume
+#Entering the name of the snapshot is optional. If no name is given, the date and time of creation of snapshot is taken as name of snapshot by default
+#Enter the retention period of snapshot. It is optional parameter. If not specified, by default, the snapshot will be retained forever.
+#Retention takes the form of HH:MM:SS. Ensure you enter the value in quotes. Eg: For 2 days, enter retention value "48:00:00"
+volume_snap:
+  - volume: dbsvr01-data-vol01
+    account: mssql
+    name: dbsvr01-data-vol01-snapshot
+    retention: "720:00:00"
+
+#Enter the list of details for creating snapshot schedule
+#Each snapshot schedule takes the name, type of snapshot schedule, account and volume that is to be attached to the snapshot schedule
+#Enter the details of when and in what interval should the snapshots be taken
+#'volumes' can be name or ID of the volumes to be attached to snapshot schedule. It takes a list of volumes
+#'account' will be the name or ID of account to be attached to snapshot schedule
+#'snap_schedule_type' can be DaysOfWeekFrequency, DaysOfMonthFrequency, TimeIntervalFrequency
+#'days_of_month' are the dates of each month when the snapshot is to be taken. It takes a list of numerical values from 1-31.
+#'days_of_month' is to be defined only when the 'snap_schedule_type' is equal to 'DaysOfMonthFrequency'. In other cases, 'days_of_month' should be commented
+#'days_of_week' are the days of each week when the snapshot is to be taken. It takes a list of values from Sunday to Saturday
+#'days_of_week' is to be defined only when the 'snap_schedule_type' is equal to 'DaysOfWeekFrequency'. In other cases, 'days_of_week' should be commented
+#'time_interval_in_days' defines the interval in days after which the snapshot be taken. It takes numerical values
+#'time_interval_in_days' is to be defined only when the 'snap_schedule_type' is equal to 'TimeIntervalFrequency' and you wish to have the schedule run every 'x' days. Default value is '0'.
+#In other cases, 'time_interval_in_days' must be commented
+#'time_interval_in_hours' can be defined only when the 'snap_schedule_type' is equal to 'TimeIntervalFrequency' and you wish to have the schedule run every 'x' hours. Default value is '0'. It takes numerical values
+#In other cases, 'time_interval_in_hours' must be commented
+#'time_interval_in_minutes' can be defined only when the 'snap_schedule_type' is equal to 'TimeIntervalFrequency' and you wish to have the schedule run every 'x' minutes. Default value is '0'. It takes numerical values
+#In other cases, 'time_interval_in_minutes' must be commented
+#You can either use 'time_interval_in_days' or 'time_interval_in_hours' or 'time_interval_in_minutes'. You cannot use any of the two together.
+#'schedule_start_date' defines the start date of the snapshot schedule. The format is <YYYY-MM-DD>T<HH:MM:SS>Z. Eg: 2020-08-01T12:00:00Z
+#Enter the retention period of snapshot. It is optional parameter. If not specified, by default, the snapshot will be retained forever.
+#Retention takes the form of HH:MM:SS. Ensure you enter the value in quotes. Eg: For 2 days, enter retention value "48:00:00"
+
+volume_snap_schedule:
+  - name: mssql-snap-schedule
+    account: mssql
+    snap_schedule_type: DaysOfWeekFrequency
+#    days_of_month:
+    days_of_week: Sunday
+#    time_interval_in_days: 1
+#    time_interval_in_hours: 1
+#    time_interval_in_minutes: 30
+    schedule_start_date: "2021-03-17T00:00:00Z"
+    volumes:
+      - dbsvr01-data-vol01
+    retention: "720:00:00"

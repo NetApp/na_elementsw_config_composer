@@ -1,0 +1,10 @@
+#Vars file for creating qos policies in Element cluster
+
+#List of qos policies to be created in Element cluster
+#Each QoS policy accepts the name of the policy, minimum, maximum and burst IOPS
+#The QoS policies created can be used to attach to the volumes to configure the required IOPS for the volume
+qos_policy:
+  - name: 
+    miniops: 
+    maxiops: 
+    burstiops: 

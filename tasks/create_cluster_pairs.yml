@@ -1,0 +1,12 @@
+- block:
+    - name: Create a Cluster Pair
+      netapp.elementsw.na_elementsw_cluster_pair:
+        hostname: "{{ source_hostname }}"
+        username: "{{ source_username }}"
+        password: "{{ source_password }}"
+        state: present
+        dest_username: "{{ dest_username }}"
+        dest_password: "{{ dest_password }}"
+        dest_mvip: "{{ dest_mvip }}"
+  tags:
+    - create_cluster_pairs

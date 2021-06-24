@@ -1,0 +1,20 @@
+# Create a Volume Pair
+- block:
+    - name: Create a Volume Pair
+      netapp.elementsw.na_elementsw_volume_pair:
+        hostname: "{{ source_hostname }}"
+        username: "{{ source_username }}"
+        password: "{{ source_password }}"
+        state: present
+        mode: "{{ item.mode | default(async) }}"
+        src_volume: "{{ item.src_vol_name }}"
+        src_account: "{{ item.src_account }}"
+        dest_volume: "{{ item.dst_vol_name }}"
+        dest_account: "{{ item.dst_account }}"
+        dest_mvip: "{{ dest_mvip }}"
+        dest_username: "{{ dest_username }}"
+        dest_password: "{{ dest_password }}"
+      with_items:         
+        - "{{ volume_pairs }}"
+  tags:
+    - create_volume_pairs

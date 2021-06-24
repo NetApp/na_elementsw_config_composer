@@ -1,0 +1,28 @@
+- hosts: elementnodemip
+  name: Create and Config HCI Element Cluster [Use-Case 1]
+  collections:
+    - netapp.elementsw
+  connection: local
+  vars_files: 
+    - vars/main.yml
+  tasks:
+    - name: Create HCI Element cluster
+      include_tasks: ../../tasks/create_cluster.yml
+    - name: Delay
+      pause: 
+        minutes: 4
+
+- hosts: elementsw
+  name: Create and Config HCI Element Cluster [Use-Case 1]
+  collections:
+    - netapp.elementsw
+  connection: local
+  vars_files:
+    - vars/main.yml
+  tasks:
+    - name: Add drives to cluster
+      include_tasks: ../../tasks/add_drives.yml
+    - name: Config the HCI Element cluster
+      include_tasks: ../../tasks/config_cluster.yml
+    - name: Configure a vlan network
+      include_tasks: ../../tasks/create_vlan.yml

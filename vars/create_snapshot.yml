@@ -1,0 +1,12 @@
+#Vars file for creating snapshots in Element cluster
+
+#Enter the list of volume snapshots to be created
+#Each volume snapshot takes the ID or name of the volume and account which is associated to the volume
+#Entering the name of the snapshot is optional. If no name is given, the date and time of creation of snapshot is taken as name of snapshot by default
+#Enter the retention period of snapshot. It is optional parameter. If not specified, by default, the snapshot will be retained forever.
+#Retention takes the form of HH:MM:SS. Ensure you enter the value in quotes. Eg: For 2 days, enter retention value "48:00:00"
+volume_snap:
+  - volume:
+    account:
+    name: 
+    retention:

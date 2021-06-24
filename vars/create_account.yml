@@ -1,0 +1,6 @@
+#Vars file for creating an account in Element cluster
+
+#Enter the list of accounts to be created
+elementsw_accounts:
+  - test1
+  - test2
