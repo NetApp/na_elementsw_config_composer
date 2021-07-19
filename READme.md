@@ -12,7 +12,7 @@ This is a tasks repository and requires some grouping effort to use it
     
     use-cases folder houses examples of the usual workflows
     Use the examples as a baseline to build upon more complex workflows 
-    To secure credentials, use ansible vaults or vars_prompts or provide credentials on run using -u and -k flags with ansible-playbook command
+    To secure credentials, use ansible vault or vars_prompts or provide credentials on run using -u and -k flags with ansible-playbook command
 
 License
 ------
@@ -30,7 +30,7 @@ Requirements
     The nodes need to be configured with network configuration for Bond1G interfaces i.e. Management IPs for all storage nodes must be configured
     The management IPs of the storage nodes must be reachable from the Ansible host running the playbook
     The storage nodes must be able to ping each other
-    solidfire-sdk-python version 1.5.0.87.post1, requests must be installed on the ansible machine and enum34 must be uninstalled. These tasks can be performed by running th pre_reqs playbook as root by providing root password - ansible-playbook pre_reqs.yml -K  
+    solidfire-sdk-python version 1.5.0.87.post1, requests must be installed on the ansible machine and enum34 must be uninstalled. These tasks can be performed by running the  pre_reqs playbook as root by providing root password - ansible-playbook pre_reqs.yml -K  
     netapp.elementsw collections must be installed - ansible-galaxy install -r collections/requirements.yml OR ansible-galaxy collection install netapp.elementsw
  
 
