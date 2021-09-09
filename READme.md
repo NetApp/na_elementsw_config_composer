@@ -26,7 +26,7 @@ Requirements
 
     Ansible version: 2.9 and above
 
-    The NetApp HCI storage nodes must be initialized before using this ansible content
+    The NetApp Element storage nodes must be initialized before using this ansible content
     The nodes need to be configured with network configuration for Bond1G interfaces i.e. Management IPs for all storage nodes must be configured
     The management IPs of the storage nodes must be reachable from the Ansible host running the playbook
     The storage nodes must be able to ping each other
@@ -104,5 +104,5 @@ Example Command to run the playbook
 Author Information
 ------------------
 
-NetApp Solutions Automation Team
+- [Nikhil M Kulkarni](nikhil.kulkarni@netapp.com) - NetApp Solutions Automation Team
 
