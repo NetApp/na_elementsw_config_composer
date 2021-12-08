@@ -104,5 +104,5 @@ Example Command to run the playbook
 Author Information
 ------------------
 
-- [Nikhil M Kulkarni](nikhil.kulkarni@netapp.com) - NetApp Solutions Automation Team
+- [Nikhil M Kulkarni](mailto:nikhil.kulkarni@netapp.com) - NetApp Solutions Automation Team
 
